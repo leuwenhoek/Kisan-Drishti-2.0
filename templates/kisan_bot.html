@@ -39,7 +39,30 @@
         </div>
     </div>
     <div style="text-align: center; margin-top: 60px;">
-        <button class="btn btn-primary">Start Diagnosis</button>
+        <form action="{{ url_for('kisan_bot') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+            <div style="margin-bottom: 20px;">
+                <label for="crop-image" style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 10px;">
+                    Upload Crop Image
+                </label>
+                <input type="file" id="crop-image" name="crop-image" accept="image/*" required style="padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); width: 100%; max-width: 400px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="query" style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 10px;">
+                    Ask a Question (Optional)
+                </label>
+                <input type="text" id="query" name="query" placeholder="E.g., What disease is this?" style="padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); width: 100%; max-width: 400px;">
+            </div>
+            <button type="submit" class="btn btn-primary">Start Diagnosis</button>
+        </form>
+        {% if diagnosis %}
+        <div class="card diagnosis-card">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--text-primary); margin-bottom: 15px;">Diagnosis Result</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7; white-space: pre-wrap;">{{ diagnosis }}</p>
+            {% if image_path %}
+            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Crop Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px; max-height: 300px;">
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
