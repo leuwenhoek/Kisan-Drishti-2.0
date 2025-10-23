@@ -4,3 +4,4 @@ images
 .vscode
 uploads
 __pycache__
+history.db
