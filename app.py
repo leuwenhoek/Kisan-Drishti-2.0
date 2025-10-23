@@ -1,9 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
 from myapi import get_plant_diagnosis
+import uuid
+import sqlite3
+from datetime import datetime
+import json
 
 app = Flask(__name__)
+app.secret_key = 'your-secret-key-change-this'  # Required for sessions
 
 # Configure upload folder
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
@@ -13,6 +18,62 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 # Ensure upload folder exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+# Database initialization
+DB_PATH = 'history.db'
+
+def init_db():
+    """Initialize the database with history table"""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS diagnosis_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            filename TEXT NOT NULL,
+            query TEXT,
+            diagnosis TEXT NOT NULL,
+            image_path TEXT NOT NULL,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+            session_id TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+def save_diagnosis(filename, query, diagnosis, image_path, session_id=None):
+    """Save diagnosis to database"""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO diagnosis_history (filename, query, diagnosis, image_path, session_id)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (filename, query, diagnosis, image_path, session_id))
+    conn.commit()
+    conn.close()
+
+def get_user_history(session_id=None, limit=50):
+    """Get user's diagnosis history"""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    if session_id:
+        cursor.execute('''
+            SELECT * FROM diagnosis_history 
+            WHERE session_id = ? 
+            ORDER BY timestamp DESC 
+            LIMIT ?
+        ''', (session_id, limit))
+    else:
+        cursor.execute('''
+            SELECT * FROM diagnosis_history 
+            ORDER BY timestamp DESC 
+            LIMIT ?
+        ''', (limit,))
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+# Initialize database on startup
+init_db()
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -35,8 +96,17 @@ def kisan_bot():
             return render_template('kisan_bot.html', diagnosis='Error: No file selected.')
         
         if file and allowed_file(file.filename):
+            # Get session ID for tracking user history
+            session_id = session.get('user_session')
+            if not session_id:
+                session_id = str(uuid.uuid4())
+                session['user_session'] = session_id
+            
+            # Create unique filename
+            file_ext = os.path.splitext(file.filename)[1].lower()
+            filename = f"{uuid.uuid4().hex[:8]}{file_ext}"
+            
             # Save the uploaded file
-            filename = secure_filename(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
 
@@ -44,24 +114,33 @@ def kisan_bot():
             diagnosis = get_plant_diagnosis(file_path, query)
             print(f"Diagnosis: {diagnosis}")  # Log for debugging
             
-            # Set image_path for template
-            image_path = os.path.join('uploads', filename)
+            # Correct image_path for template
+            image_path = f"uploads/{filename}"
             
-            return render_template('kisan_bot.html', diagnosis=diagnosis, image_path=image_path)
+            # ✅ SAVE TO DATABASE
+            save_diagnosis(filename, query, diagnosis, image_path, session_id)
+            
+            return render_template('kisan_bot.html', 
+                                 diagnosis=diagnosis, 
+                                 image_path=image_path,
+                                 success=True)
         
         return render_template('kisan_bot.html', diagnosis='Error: Invalid file format. Please upload PNG, JPG, or GIF.')
 
     # GET request: Render the form
     return render_template('kisan_bot.html')
 
-@app.route('/expert-desk')
-def expert_desk():
-    
-    return render_template('expert.html')
-
 @app.route('/history')
 def history():
-    return render_template('history.html')
+    # Get user's session history
+    session_id = session.get('user_session')
+    history_data = get_user_history(session_id)
+    
+    return render_template('history.html', history=history_data)
+
+@app.route('/expert-desk')
+def expert_desk():
+    return render_template('expert.html')
 
 @app.route('/team')
 def about():
