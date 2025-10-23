@@ -24,7 +24,138 @@
         </div>
     </div>
     <div style="text-align: center; margin-top: 60px;">
-        <button class="btn btn-primary">Connect with Expert</button>
+        <button class="btn btn-primary" id="open-expert-modal">Connect with Expert</button>
     </div>
 </section>
+
+<!-- Expert Modal -->
+<div id="expert-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Our Experts</h3>
+            <button class="modal-close" id="close-expert-modal">×</button>
+        </div>
+        <div class="experts-grid">
+            <!-- Experts will be populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <span id="toast-message"></span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const openModalBtn = document.getElementById('open-expert-modal');
+    const closeModalBtn = document.getElementById('close-expert-modal');
+    const modal = document.getElementById('expert-modal');
+    const toast = document.getElementById('toast');
+    
+    // Expert data
+    const experts = [
+        {
+            name: "Dr. Rajesh Kumar",
+            experience: "15+ years",
+            specialization: "Rice & Wheat Diseases",
+            avatar: "👨‍🔬"
+        },
+        {
+            name: "Dr. Priya Sharma",
+            experience: "12+ years",
+            specialization: "Soil Fertility & Nutrition",
+            avatar: "👩‍🔬"
+        },
+        {
+            name: "Prof. Anil Verma",
+            experience: "20+ years",
+            specialization: "Cotton & Pulses Expert",
+            avatar: "👨‍🏫"
+        },
+        {
+            name: "Dr. Meera Patel",
+            experience: "10+ years",
+            specialization: "Vegetable Crops & Organic Farming",
+            avatar: "👩‍🌾"
+        },
+        {
+            name: "Dr. Vikram Singh",
+            experience: "18+ years",
+            specialization: "Fruit Crops & Orchard Management",
+            avatar: "👨‍🔬"
+        },
+        {
+            name: "Dr. Anjali Gupta",
+            experience: "14+ years",
+            specialization: "Integrated Pest Management",
+            avatar: "👩‍🔬"
+        }
+    ];
+    
+    // Open modal
+    openModalBtn.addEventListener('click', function() {
+        populateExperts();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal
+    closeModalBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+    
+    // Close on outside click
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Populate experts
+    function populateExperts() {
+        const expertsGrid = document.querySelector('.experts-grid');
+        expertsGrid.innerHTML = '';
+        
+        experts.forEach(expert => {
+            const expertCard = document.createElement('div');
+            expertCard.className = 'expert-card';
+            expertCard.innerHTML = `
+                <div class="expert-avatar">${expert.avatar}</div>
+                <div class="expert-info">
+                    <h4>${expert.name}</h4>
+                    <div class="expert-exp">${expert.experience}</div>
+                    <div class="expert-specialization">${expert.specialization}</div>
+                </div>
+                <button class="btn btn-secondary btn-request" onclick="requestExpertChat('${expert.name}')">
+                    Request Chat
+                </button>
+            `;
+            expertsGrid.appendChild(expertCard);
+        });
+    }
+    
+    // Global function for request chat
+    window.requestExpertChat = function(expertName) {
+        showToast(`Request sent to ${expertName}! We will reach you within 24 hours.`);
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Show toast notification
+    function showToast(message) {
+        const toastMessage = document.getElementById('toast-message');
+        toastMessage.textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 4000);
+    }
+});
+</script>
 {% endblock %}

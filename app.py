@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import os
 from werkzeug.utils import secure_filename
 from myapi import get_plant_diagnosis
-import uuid
-import sqlite3
 from datetime import datetime
-import json
+import sqlite3
+import uuid
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-change-this'  # Required for sessions
@@ -114,10 +113,9 @@ def kisan_bot():
             diagnosis = get_plant_diagnosis(file_path, query)
             print(f"Diagnosis: {diagnosis}")  # Log for debugging
             
-            # Correct image_path for template
+            
             image_path = f"uploads/{filename}"
             
-            # ✅ SAVE TO DATABASE
             save_diagnosis(filename, query, diagnosis, image_path, session_id)
             
             return render_template('kisan_bot.html', 
