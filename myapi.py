@@ -1,7 +1,35 @@
 from PIL import Image
 import google.generativeai as genai
 import os
+import re
 from dotenv import load_dotenv
+
+def clean_markdown(text):
+    """
+    Remove markdown formatting from text to display clean content.
+    """
+    if not text:
+        return ""
+    
+    # Remove bold **text** and __text__
+    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)
+    text = re.sub(r'__(.*?)__', r'\1', text)
+    
+    # Remove italic *text* and _text_
+    text = re.sub(r'\*(.*?)\*', r'\1', text)
+    text = re.sub(r'_(.*?)_', r'\1', text)
+    
+    # Remove other markdown patterns
+    text = re.sub(r'`(.*?)`', r'\1', text)  # Remove code blocks
+    text = re.sub(r'###?\s*(.*?)(?=\n|$)', r'\1', text, flags=re.DOTALL)  # Remove headers
+    text = re.sub(r'- \[ \] ', '', text)  # Remove unchecked boxes
+    text = re.sub(r'- \[x\] ', '✓ ', text)  # Keep checked boxes as ✓
+    
+    # Clean up extra newlines and spaces
+    text = re.sub(r'\n\s*\n', '\n\n', text)  # Normalize newlines
+    text = text.strip()
+    
+    return text
 
 def get_plant_diagnosis(image_path, prompt):
     """
@@ -12,7 +40,7 @@ def get_plant_diagnosis(image_path, prompt):
         prompt (str): User query or default prompt for disease detection
     
     Returns:
-        str: AI-generated diagnosis or error message
+        str: Clean AI-generated diagnosis without markdown formatting
     """
     try:
         # Load environment variables
@@ -30,13 +58,28 @@ def get_plant_diagnosis(image_path, prompt):
         # Initialize Gemini model
         model = genai.GenerativeModel("gemini-2.0-flash")
         
+        # Enhanced prompt for cleaner, structured response
+        default_prompt = """Analyze this plant image and provide a clear diagnosis:
+        nand give a clear disease name in the top of 5 points
+1. Plant type (if identifiable)
+2. Disease name (if any) or "Healthy"
+3. Severity level (Low/Medium/High)
+4. Brief treatment recommendations
+5. Prevention tips
+
+Respond in simple, clear sentences without using **bold**, *italic*, or other formatting."""
+
+        full_prompt = prompt or default_prompt
+        
         # Send image and prompt to Gemini
         response = model.generate_content([
-            prompt or "What plant disease is shown in this image? If no disease is detected, describe the plant's health.",
+            full_prompt,
             img
         ])
         
-        # Return the AI-generated diagnosis
-        return response.text
+        # Clean the response and return
+        clean_response = clean_markdown(response.text)
+        return clean_response
+        
     except Exception as e:
         return f"Error processing image with AI: {str(e)}"
