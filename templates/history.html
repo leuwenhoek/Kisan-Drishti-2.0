@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}History - Kisan Dhristi{% endblock %}
+
+{% block content %}
+<!-- History Section -->
+<section id="history" class="section">
+    <div class="section-header">
+        <h2>Diagnosis History</h2>
+        <p>Track your crop health journey and past consultations</p>
+    </div>
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 60px; text-align: center; max-width: 600px; margin: 0 auto;">
+        <svg width="80" height="80" fill="none" stroke="var(--primary)" viewBox="0 0 24 24" style="margin: 0 auto 30px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 20px;">No History Yet</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 30px;">Start diagnosing crops to see your history here</p>
+        <a href="{{ url_for('kisan_bot') }}" class="btn btn-primary">Start First Diagnosis</a>
+    </div>
+</section>
+{% endblock %}
