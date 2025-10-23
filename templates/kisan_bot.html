@@ -63,16 +63,22 @@
         </form>
         
         {% if diagnosis %}
-        <div class="card diagnosis-card">
-            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--text-primary); margin-bottom: 15px;">Diagnosis Result</h3>
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border-left: 4px solid var(--primary);">
-                <p style="color: var(--text-primary); line-height: 1.8; white-space: pre-wrap; margin: 0; font-size: 1.1rem;">{{ diagnosis }}</p>
-            </div>
-            {% if image_path %}
-            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Crop Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px; max-height: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-            {% endif %}
-        </div>
-        {% endif %}
+<div class="card diagnosis-card">
+    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--text-primary); margin-bottom: 15px;">Diagnosis Result</h3>
+    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border-left: 4px solid var(--primary);">
+        <p style="color: var(--text-primary); line-height: 1.8; white-space: pre-wrap; margin: 0; font-size: 1.1rem;">{{ diagnosis }}</p>
+    </div>
+    {% if image_path %}
+    <div style="text-align: center; margin-top: 25px;">
+        <img src="{{ url_for('static', filename=image_path) }}" 
+             alt="Uploaded Crop Image" 
+             class="uploaded-image"
+             onerror="this.style.display='none'; console.log('Image failed to load');">
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Your uploaded image</p>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
     </div>
 </section>
 
