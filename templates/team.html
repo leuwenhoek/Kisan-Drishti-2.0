@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About Team - Kisan Dhristi{% endblock %}
+
+{% block content %}
+<!-- About Team Section -->
+<section id="about" class="section">
+    <div class="section-header">
+        <h2>About Our Team</h2>
+        <p>Meet the innovators behind Kisan Dhristi</p>
+    </div>
+    
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 60px; margin-bottom: 60px; max-width: 800px; margin: 0 auto;">
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; text-align: center; margin-bottom: 30px;">Our Mission</h3>
+        <p style="color: var(--text-secondary); font-size: 1.2rem; line-height: 1.8; text-align: center;">
+            We're dedicated to empowering farmers with cutting-edge AI technology to protect their crops, increase yields, and build sustainable agricultural practices. Our platform bridges the gap between traditional farming wisdom and modern innovation.
+        </p>
+    </div>
+
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="team-avatar">AR</div>
+            <h3>Amit Raj</h3>
+            <p>Lead Developer</p>
+            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">AI & Machine Learning Specialist</p>
+        </div>
+        
+        <div class="team-member">
+            <div class="team-avatar">PS</div>
+            <h3>Priya Sharma</h3>
+            <p>Agricultural Expert</p>
+            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">Plant Pathology Consultant</p>
+        </div>
+        
+        <div class="team-member">
+            <div class="team-avatar">RK</div>
+            <h3>Rahul Kumar</h3>
+            <p>Product Designer</p>
+            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">UX/UI & Accessibility</p>
+        </div>
+        
+        <div class="team-member">
+            <div class="team-avatar">SM</div>
+            <h3>Sanjana Malik</h3>
+            <p>Data Scientist</p>
+            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">Model Training & Optimization</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
