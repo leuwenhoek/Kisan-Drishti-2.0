@@ -16,11 +16,11 @@
                 <span></span> Kisan Dhristi
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
-                <li><a href="{{ url_for('kisan_bot') }}" class="nav-link {% if request.endpoint == 'kisan_bot' %}active{% endif %}">Kisan Bot</a></li>
-                <li><a href="{{ url_for('expert_desk') }}" class="nav-link {% if request.endpoint == 'expert_desk' %}active{% endif %}">Expert Desk</a></li>
-                <li><a href="{{ url_for('history') }}" class="nav-link {% if request.endpoint == 'history' %}active{% endif %}">History</a></li>
-                <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Team</a></li>
+                <li><a href="/" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="/kisan-bot" class="nav-link {% if request.endpoint == 'kisan_bot' %}active{% endif %}">Kisan Bot</a></li>
+                <li><a href="/expert-desk" class="nav-link {% if request.endpoint == 'expert_desk' %}active{% endif %}">Expert Desk</a></li>
+                <li><a href="/history" class="nav-link {% if request.endpoint == 'history' %}active{% endif %}">History</a></li>
+                <li><a href="/team" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Team</a></li>
             </ul>
             <div class="mobile-toggle" onclick="toggleMenu()">
                 <span></span>
