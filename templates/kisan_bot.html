@@ -40,29 +40,58 @@
     </div>
     <div style="text-align: center; margin-top: 60px;">
         <form action="{{ url_for('kisan_bot') }}" method="POST" enctype="multipart/form-data" class="upload-form">
-            <div style="margin-bottom: 20px;">
-                <label for="crop-image" style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 10px;">
-                    Upload Crop Image
+            <!-- Custom File Upload -->
+            <div class="file-upload-container">
+                <label for="crop-image" class="file-upload-label">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14"/>
+                    </svg>
+                    <span id="file-label-text">Upload Crop Image</span>
+                    <span class="file-upload-icon">📁</span>
                 </label>
-                <input type="file" id="crop-image" name="crop-image" accept="image/*" required style="padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); width: 100%; max-width: 400px;">
+                <input type="file" id="crop-image" name="crop-image" accept="image/*" required class="file-input">
             </div>
-            <div style="margin-bottom: 20px;">
-                <label for="query" style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 10px;">
+
+            <div class="text-input-container">
+                <label for="query" class="input-label">
                     Ask a Question (Optional)
                 </label>
-                <input type="text" id="query" name="query" placeholder="E.g., What disease is this?" style="padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); width: 100%; max-width: 400px;">
+                <input type="text" id="query" name="query" placeholder="E.g., What disease is this?" class="text-input">
             </div>
-            <button type="submit" class="btn btn-primary">Start Diagnosis</button>
+            
+            <button type="submit" class="btn btn-primary btn-large">Start Diagnosis</button>
         </form>
+        
         {% if diagnosis %}
         <div class="card diagnosis-card">
             <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--text-primary); margin-bottom: 15px;">Diagnosis Result</h3>
-            <p style="color: var(--text-secondary); line-height: 1.7; white-space: pre-wrap;">{{ diagnosis }}</p>
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border-left: 4px solid var(--primary);">
+                <p style="color: var(--text-primary); line-height: 1.8; white-space: pre-wrap; margin: 0; font-size: 1.1rem;">{{ diagnosis }}</p>
+            </div>
             {% if image_path %}
-            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Crop Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px; max-height: 300px;">
+            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Crop Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px; max-height: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
             {% endif %}
         </div>
         {% endif %}
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('crop-image');
+    const fileLabel = document.querySelector('.file-upload-label');
+    const fileLabelText = document.getElementById('file-label-text');
+    
+    fileInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            const fileName = this.files[0].name;
+            fileLabelText.textContent = fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName;
+            fileLabel.classList.add('has-file');
+        } else {
+            fileLabelText.textContent = 'Upload Crop Image';
+            fileLabel.classList.remove('has-file');
+        }
+    });
+});
+</script>
 {% endblock %}
