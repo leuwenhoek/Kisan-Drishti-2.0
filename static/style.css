@@ -1,3 +1,4 @@
+/* Previous styles unchanged (omitted for brevity) */
 * {
     margin: 0;
     padding: 0;
@@ -261,8 +262,8 @@ nav.scrolled {
 
 /* Sections */
 .section {
-    padding: 100px 40px; /* Fixed: Added top padding for fixed nav */
-    min-height: calc(100vh - 80px); /* Ensures content fills viewport */
+    padding: 100px 40px;
+    min-height: calc(100vh - 80px);
     display: block;
     animation: fadeIn 0.5s ease-out;
 }
@@ -400,7 +401,7 @@ footer {
     background: var(--bg-card);
     border-top: 1px solid var(--border);
     padding: 60px 40px 30px;
-    margin-top: auto; /* Fixed: Better spacing below content */
+    margin-top: auto;
 }
 
 .footer-content {
@@ -461,7 +462,7 @@ footer {
     }
 
     .section {
-        padding: 80px 20px; /* Adjusted for mobile */
+        padding: 80px 20px;
     }
 
     .hero-buttons {
@@ -488,4 +489,46 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 30px;
     }
+}
+
+/* Form styles */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.upload-form input[type="file"],
+.upload-form input[type="text"] {
+    transition: all 0.3s ease;
+}
+
+.upload-form input[type="file"]:hover,
+.upload-form input[type="text"]:hover {
+    border-color: var(--primary);
+}
+
+.upload-form input[type="file"]:focus,
+.upload-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Diagnosis card styles */
+.diagnosis-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: left;
+}
+
+.diagnosis-card p {
+    white-space: pre-wrap; /* Preserves line breaks and formatting */
+    line-height: 1.8;
+    font-size: 1rem;
 }
