@@ -31,16 +31,17 @@ def clean_markdown(text):
     
     return text
 
-def get_plant_diagnosis(image_path, prompt):
+def get_plant_diagnosis(image_path, prompt, language='English'):
     """
-    Process a plant image and prompt using Gemini API to return a disease diagnosis.
+    Process a plant image and prompt using Gemini API to return a disease diagnosis in the specified language.
     
     Args:
         image_path (str): Path to the uploaded image (e.g., 'static/uploads/image.jpg')
         prompt (str): User query or default prompt for disease detection
+        language (str): Language for the response (e.g., 'Hindi', 'Tamil')
     
     Returns:
-        str: Clean AI-generated diagnosis without markdown formatting
+        str: Clean AI-generated diagnosis without markdown formatting, in the specified language
     """
     try:
         # Load environment variables
@@ -59,17 +60,20 @@ def get_plant_diagnosis(image_path, prompt):
         model = genai.GenerativeModel("gemini-2.0-flash")
         
         # Enhanced prompt for cleaner, structured response
-        default_prompt = """Analyze this plant image and provide a clear diagnosis:
-        nand give a clear disease name in the top of 5 points
+        default_prompt = f"""Analyze this plant image and provide a clear diagnosis:
+        and give a clear disease name in the top of 5 points
 1. Plant type (if identifiable)
 2. Disease name (if any) or "Healthy"
 3. Severity level (Low/Medium/High)
 4. Brief treatment recommendations
 5. Prevention tips
 
-Respond in simple, clear sentences without using **bold**, *italic*, or other formatting."""
+Respond in simple, clear sentences without using **bold**, *italic*, or other formatting. Provide the entire response in {language} language."""
 
         full_prompt = prompt or default_prompt
+        if prompt:
+            # If custom prompt is provided, append language instruction
+            full_prompt += f"\n\nProvide the entire response in {language} language using simple sentences."
         
         # Send image and prompt to Gemini
         response = model.generate_content([
