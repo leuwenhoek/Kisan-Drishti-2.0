@@ -3,7 +3,46 @@
 {% block title %}Kisan Bot - Kisan Dhristi{% endblock %}
 
 {% block content %}
-<!-- Kisan Bot Section -->
+<style>
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary, #4f46e5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark, #3730a3);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary, #4f46e5) rgba(255, 255, 255, 0.05);
+}
+
+/* Font support for Indian languages */
+select, option {
+    font-family: 'Noto Sans', 'Arial Unicode MS', sans-serif;
+    font-size: 16px; /* Ensure readability */
+}
+
+/* Ensure proper rendering for RTL languages like Urdu */
+select[dir="rtl"], option[dir="rtl"] {
+    direction: rtl;
+}
+</style>
+
+<meta charset="UTF-8">
+
 <section id="kisan-bot" class="section">
     <div class="section-header">
         <h2>Kisan Bot</h2>
@@ -40,7 +79,6 @@
     </div>
     <div style="text-align: center; margin-top: 60px;">
         <form action="{{ url_for('kisan_bot') }}" method="POST" enctype="multipart/form-data" class="upload-form">
-            <!-- Custom File Upload -->
             <div class="file-upload-container">
                 <label for="crop-image" class="file-upload-label">
                     <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +94,38 @@
                 <label for="query" class="input-label">
                     Ask a Question (Optional)
                 </label>
-                <input type="text" id="query" name="query" placeholder="E.g., What disease is this?" class="text-input">
+                <input type="text" id="query" name="query" placeholder="E.g., What disease is this?" class="text-input" value="">
+            </div>
+            
+            <div class="text-input-container">
+                <label for="language" class="input-label">
+                    Select Language
+                </label>
+                <select id="language" name="language" class="text-input" required>
+                    <option style="background-color: #111;" value="English" {% if language == 'English' %}selected{% endif %}>English</option>
+                    <option style="background-color: #111;" value="Assamese" {% if language == 'Assamese' %}selected{% endif %}>অসমীয়া</option>
+                    <option style="background-color: #111;" value="Bengali" {% if language == 'Bengali' %}selected{% endif %}>বাংলা</option>
+                    <option style="background-color: #111;" value="Bodo" {% if language == 'Bodo' %}selected{% endif %}>बोरों</option>
+                    <option style="background-color: #111;" value="Dogri" {% if language == 'Dogri' %}selected{% endif %}>डोगरी</option>
+                    <option style="background-color: #111;" value="Gujarati" {% if language == 'Gujarati' %}selected{% endif %}>ગુજરાતી</option>
+                    <option style="background-color: #111;" value="Hindi" {% if language == 'Hindi' %}selected{% endif %}>हिंदी</option>
+                    <option style="background-color: #111;" value="Kannada" {% if language == 'Kannada' %}selected{% endif %}>ಕನ್ನಡ</option>
+                    <option style="background-color: #111;" value="Kashmiri" {% if language == 'Kashmiri' %}selected{% endif %}>کٲشُر</option>
+                    <option style="background-color: #111;" value="Konkani" {% if language == 'Konkani' %}selected{% endif %}>कोंकणी</option>
+                    <option style="background-color: #111;" value="Maithili" {% if language == 'Maithili' %}selected{% endif %}>मैथिली</option>
+                    <option style="background-color: #111;" value="Malayalam" {% if language == 'Malayalam' %}selected{% endif %}>മലയാളം</option>
+                    <option style="background-color: #111;" value="Manipuri" {% if language == 'Manipuri' %}selected{% endif %}>মৈতৈলোন্</option>
+                    <option style="background-color: #111;" value="Marathi" {% if language == 'Marathi' %}selected{% endif %}>मराठी</option>
+                    <option style="background-color: #111;" value="Nepali" {% if language == 'Nepali' %}selected{% endif %}>नेपाली</option>
+                    <option style="background-color: #111;" value="Odia" {% if language == 'Odia' %}selected{% endif %}>ଓଡ଼ିଆ</option>
+                    <option style="background-color: #111;" value="Punjabi" {% if language == 'Punjabi' %}selected{% endif %}>ਪੰਜਾਬੀ</option>
+                    <option style="background-color: #111;" value="Sanskrit" {% if language == 'Sanskrit' %}selected{% endif %}>संस्कृतम्</option>
+                    <option style="background-color: #111;" value="Santali" {% if language == 'Santali' %}selected{% endif %}>ᱥᱟᱱᱛᱟᱲᱤ</option>
+                    <option style="background-color: #111;" value="Sindhi" {% if language == 'Sindhi' %}selected{% endif %}>سنڌي</option>
+                    <option style="background-color: #111;" value="Tamil" {% if language == 'Tamil' %}selected{% endif %}>தமிழ்</option>
+                    <option style="background-color: #111;" value="Telugu" {% if language == 'Telugu' %}selected{% endif %}>తెలుగు</option>
+                    <option style="background-color: #111;" value="Urdu" {% if language == 'Urdu' %}selected{% endif %}>اردو</option>
+                </select>
             </div>
             
             <button type="submit" class="btn btn-primary btn-large">Start Diagnosis</button>
