@@ -83,16 +83,20 @@ def home():
 
 @app.route('/kisan-bot', methods=['GET', 'POST'])
 def kisan_bot():
+    # Default language
+    default_language = 'English'
+    
     if request.method == 'POST':
         # Check if file and query are in the request
         if 'crop-image' not in request.files:
-            return render_template('kisan_bot.html', diagnosis='Error: No image uploaded.')
+            return render_template('kisan_bot.html', diagnosis='Error: No image uploaded.', language=default_language)
         
         file = request.files['crop-image']
         query = request.form.get('query', '')
+        language = request.form.get('language', default_language)
 
         if file.filename == '':
-            return render_template('kisan_bot.html', diagnosis='Error: No file selected.')
+            return render_template('kisan_bot.html', diagnosis='Error: No file selected.', language=language)
         
         if file and allowed_file(file.filename):
             # Get session ID for tracking user history
@@ -109,10 +113,9 @@ def kisan_bot():
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
 
-            # Get AI diagnosis
-            diagnosis = get_plant_diagnosis(file_path, query)
+            # Get AI diagnosis with language
+            diagnosis = get_plant_diagnosis(file_path, query, language)
             print(f"Diagnosis: {diagnosis}")  # Log for debugging
-            
             
             image_path = f"uploads/{filename}"
             
@@ -121,12 +124,13 @@ def kisan_bot():
             return render_template('kisan_bot.html', 
                                  diagnosis=diagnosis, 
                                  image_path=image_path,
-                                 success=True)
+                                 success=True,
+                                 language=language)
         
-        return render_template('kisan_bot.html', diagnosis='Error: Invalid file format. Please upload PNG, JPG, or GIF.')
+        return render_template('kisan_bot.html', diagnosis='Error: Invalid file format. Please upload PNG, JPG, or GIF.', language=language)
 
     # GET request: Render the form
-    return render_template('kisan_bot.html')
+    return render_template('kisan_bot.html', language=default_language)
 
 @app.route('/history')
 def history():
