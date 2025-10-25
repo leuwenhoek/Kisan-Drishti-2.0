@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Crop Library - Kisan Dhristi{% endblock %}
+
+{% block content %}
+<style>
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary, #4f46e5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark, #3730a3);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary, #4f46e5) rgba(255, 255, 255, 0.05);
+}
+
+.crop-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+}
+
+.disease {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+</style>
+
+<!-- Library Section -->
+<section id="library" class="section">
+    <div class="section-header">
+        <h2>Crop Library</h2>
+        <p>Comprehensive information on major Indian crops, including cultivation details and common diseases</p>
+    </div>
+    
+    <div class="search-container" style="text-align: center;">
+        <input type="text" id="searchInput" placeholder="Search for a crop (e.g., Wheat, Rice)...">
+    </div>
+    
+    <div id="crops-container">
+        {% for plant in plants %}
+        <div class="crop-card">
+            <h3>{{ plant.crop_name }}</h3>
+            <p><strong>Scientific Name:</strong> {{ plant.scientific_name }}</p>
+            <p><strong>Category:</strong> {{ plant.category }}</p>
+            <p><strong>States Grown:</strong> {{ ', '.join(plant.states_grown) }}</p>
+            <p><strong>Sowing Time:</strong> {{ plant.sowing_time }}</p>
+            <p><strong>Harvesting Time:</strong> {{ plant.harvesting_time }}</p>
+            <p><strong>Soil Type:</strong> {{ plant.soil_type }}</p>
+            
+            <h4>Common Diseases:</h4>
+            {% for disease in plant.common_diseases %}
+            <div class="disease">
+                <h5>{{ disease.disease_name }}</h5>
+                <p><strong>Symptoms:</strong> {{ disease.symptoms }}</p>
+                <p><strong>Cause:</strong> {{ disease.cause }}</p>
+                <p><strong>Cure:</strong> {{ disease.cure }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const cropCards = document.querySelectorAll('.crop-card');
+    
+    searchInput.addEventListener('keyup', function() {
+        const input = this.value.toLowerCase();
+        cropCards.forEach(function(card) {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(input)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
