@@ -5,6 +5,7 @@ from datetime import datetime
 import sqlite3
 import uuid
 import os
+from lib_info import Library
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-change-this'  # Required for sessions
@@ -147,6 +148,12 @@ def expert_desk():
 @app.route('/team')
 def about():
     return render_template('team.html')
+
+@app.route('/library')
+def lib():
+    library = Library()
+    plants = library.data
+    return render_template("library.html", plants=plants)
 
 if __name__ == "__main__":
     app.run(debug=True)
