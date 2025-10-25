@@ -1,0 +1,408 @@
+[
+  {
+    "crop_name": "Wheat",
+    "scientific_name": "Triticum aestivum",
+    "category": "Rabi",
+    "states_grown": ["Punjab", "Haryana", "Uttar Pradesh", "Madhya Pradesh"],
+    "sowing_time": "October to December",
+    "harvesting_time": "March to May",
+    "soil_type": "Well-drained loamy soil with good fertility",
+    "common_diseases": [
+      {
+        "disease_name": "Rust",
+        "symptoms": "Yellow-orange powdery pustules on leaves and stems",
+        "cause": "Fungal infection (Puccinia species)",
+        "cure": "Spray Propiconazole 25 EC @1 ml/litre water"
+      },
+      {
+        "disease_name": "Loose Smut",
+        "symptoms": "Black powdery masses replace grains in the ear head",
+        "cause": "Fungal infection (Ustilago tritici)",
+        "cure": "Seed treatment with Carbendazim 2g/kg seed"
+      }
+    ]
+  },
+  {
+    "crop_name": "Rice",
+    "scientific_name": "Oryza sativa",
+    "category": "Kharif",
+    "states_grown": ["West Bengal", "Uttar Pradesh", "Andhra Pradesh", "Bihar"],
+    "sowing_time": "June to July",
+    "harvesting_time": "October to November",
+    "soil_type": "Clayey loam with high water-holding capacity",
+    "common_diseases": [
+      {
+        "disease_name": "Blast",
+        "symptoms": "Spindle-shaped lesions with gray center and brown margins on leaves",
+        "cause": "Fungal infection (Magnaporthe oryzae)",
+        "cure": "Spray Tricyclazole 75 WP @0.6 g/litre water"
+      },
+      {
+        "disease_name": "Bacterial Leaf Blight",
+        "symptoms": "Yellowing and drying of leaves from tips",
+        "cause": "Bacterium (Xanthomonas oryzae pv. oryzae)",
+        "cure": "Use Streptocycline 100 ppm spray or copper oxychloride 0.3%"
+      }
+    ]
+  },
+  {
+    "crop_name": "Maize",
+    "scientific_name": "Zea mays",
+    "category": "Kharif",
+    "states_grown": ["Karnataka", "Madhya Pradesh", "Bihar", "Telangana"],
+    "sowing_time": "June to July",
+    "harvesting_time": "September to October",
+    "soil_type": "Fertile loamy soil with good drainage",
+    "common_diseases": [
+      {
+        "disease_name": "Turcicum Leaf Blight",
+        "symptoms": "Long, elliptical grayish lesions on leaves",
+        "cause": "Fungal infection (Exserohilum turcicum)",
+        "cure": "Spray Mancozeb 2.5 g/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Cotton",
+    "scientific_name": "Gossypium hirsutum",
+    "category": "Kharif",
+    "states_grown": ["Maharashtra", "Gujarat", "Telangana", "Punjab"],
+    "sowing_time": "April to June",
+    "harvesting_time": "November to January",
+    "soil_type": "Black cotton soil (clay loam)",
+    "common_diseases": [
+      {
+        "disease_name": "Wilt",
+        "symptoms": "Yellowing and wilting of leaves, stunted growth",
+        "cause": "Fungal infection (Fusarium oxysporum)",
+        "cure": "Soil treatment with Trichoderma @2.5 kg/ha"
+      }
+    ]
+  },
+  {
+    "crop_name": "Sugarcane",
+    "scientific_name": "Saccharum officinarum",
+    "category": "Perennial",
+    "states_grown": ["Uttar Pradesh", "Maharashtra", "Karnataka", "Tamil Nadu"],
+    "sowing_time": "February to April",
+    "harvesting_time": "December to March",
+    "soil_type": "Deep, rich loamy soil with good drainage",
+    "common_diseases": [
+      {
+        "disease_name": "Red Rot",
+        "symptoms": "Reddish discoloration of internal tissues with sour odor",
+        "cause": "Fungal infection (Colletotrichum falcatum)",
+        "cure": "Use resistant varieties; remove infected canes"
+      }
+    ]
+  },
+  {
+    "crop_name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "category": "Rabi",
+    "states_grown": ["Uttar Pradesh", "Bihar", "West Bengal", "Punjab"],
+    "sowing_time": "October to November",
+    "harvesting_time": "February to March",
+    "soil_type": "Sandy loam with good drainage",
+    "common_diseases": [
+      {
+        "disease_name": "Late Blight",
+        "symptoms": "Brown-black patches on leaves and stems during humid weather",
+        "cause": "Fungal infection (Phytophthora infestans)",
+        "cure": "Spray Metalaxyl + Mancozeb combination @2 g/litre"
+      }
+    ]
+  },
+  {
+    "crop_name": "Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "category": "Kharif/Rabi",
+    "states_grown": ["Maharashtra", "Karnataka", "Andhra Pradesh", "Madhya Pradesh"],
+    "sowing_time": "July to August (Kharif), November to December (Rabi)",
+    "harvesting_time": "September to February",
+    "soil_type": "Well-drained sandy loam soil",
+    "common_diseases": [
+      {
+        "disease_name": "Early Blight",
+        "symptoms": "Brown concentric rings on leaves and fruits",
+        "cause": "Fungal infection (Alternaria solani)",
+        "cure": "Spray Chlorothalonil 2 g/litre water"
+      },
+      {
+        "disease_name": "Leaf Curl Virus",
+        "symptoms": "Upward curling of leaves and stunted growth",
+        "cause": "Whitefly-transmitted virus",
+        "cure": "Spray Imidacloprid 0.3 ml/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Soybean",
+    "scientific_name": "Glycine max",
+    "category": "Kharif",
+    "states_grown": ["Madhya Pradesh", "Maharashtra", "Rajasthan"],
+    "sowing_time": "June to July",
+    "harvesting_time": "October to November",
+    "soil_type": "Fertile black cotton soil",
+    "common_diseases": [
+      {
+        "disease_name": "Rust",
+        "symptoms": "Small reddish-brown pustules on lower leaf surface",
+        "cause": "Fungal infection (Phakopsora pachyrhizi)",
+        "cure": "Spray Hexaconazole 1 ml/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Groundnut",
+    "scientific_name": "Arachis hypogaea",
+    "category": "Kharif",
+    "states_grown": ["Gujarat", "Andhra Pradesh", "Tamil Nadu", "Karnataka"],
+    "sowing_time": "June to July",
+    "harvesting_time": "October to November",
+    "soil_type": "Sandy loam to red soil with good drainage",
+    "common_diseases": [
+      {
+        "disease_name": "Tikka Disease",
+        "symptoms": "Circular brown spots on leaves leading to defoliation",
+        "cause": "Fungal infection (Cercospora spp.)",
+        "cure": "Spray Mancozeb 2.5 g/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Mustard",
+    "scientific_name": "Brassica juncea",
+    "category": "Rabi",
+    "states_grown": ["Rajasthan", "Haryana", "Uttar Pradesh", "Madhya Pradesh"],
+    "sowing_time": "October to November",
+    "harvesting_time": "February to March",
+    "soil_type": "Well-drained loamy to clayey soil",
+    "common_diseases": [
+      {
+        "disease_name": "Alternaria Blight",
+        "symptoms": "Dark concentric spots on leaves, pods, and stems",
+        "cause": "Fungal infection (Alternaria brassicae)",
+        "cure": "Spray Iprodione + Carbendazim 2 g/litre water"
+      }
+    ]
+  },
+{
+    "crop_name": "Banana",
+    "scientific_name": "Musa paradisiaca",
+    "category": "Perennial",
+    "states_grown": ["Tamil Nadu", "Maharashtra", "Karnataka", "Gujarat"],
+    "sowing_time": "Throughout the year (depending on irrigation)",
+    "harvesting_time": "11 to 12 months after planting",
+    "soil_type": "Rich loamy soil with good drainage",
+    "common_diseases": [
+      {
+        "disease_name": "Panama Wilt",
+        "symptoms": "Yellowing and wilting of older leaves",
+        "cause": "Fungal infection (Fusarium oxysporum f.sp. cubense)",
+        "cure": "Use disease-free suckers and apply Carbendazim 0.1% drench"
+      },
+      {
+        "disease_name": "Sigatoka Leaf Spot",
+        "symptoms": "Yellow streaks on leaves turning into dark brown patches",
+        "cause": "Fungal infection (Mycosphaerella musicola)",
+        "cure": "Spray Mancozeb 2 g/litre water at 15-day intervals"
+      }
+    ]
+  },
+  {
+    "crop_name": "Mango",
+    "scientific_name": "Mangifera indica",
+    "category": "Fruit Crop",
+    "states_grown": ["Uttar Pradesh", "Bihar", "Andhra Pradesh", "Maharashtra"],
+    "sowing_time": "June to August",
+    "harvesting_time": "March to June",
+    "soil_type": "Well-drained alluvial or loamy soil",
+    "common_diseases": [
+      {
+        "disease_name": "Powdery Mildew",
+        "symptoms": "White powdery growth on leaves and inflorescence",
+        "cause": "Fungal infection (Oidium mangiferae)",
+        "cure": "Spray wettable sulphur 0.2% or Carbendazim 0.1%"
+      },
+      {
+        "disease_name": "Anthracnose",
+        "symptoms": "Dark brown to black spots on leaves, flowers, and fruits",
+        "cause": "Fungal infection (Colletotrichum gloeosporioides)",
+        "cure": "Spray copper oxychloride 0.3% or Mancozeb 2 g/litre"
+      }
+    ]
+  },
+  {
+    "crop_name": "Apple",
+    "scientific_name": "Malus domestica",
+    "category": "Fruit Crop",
+    "states_grown": ["Himachal Pradesh", "Jammu and Kashmir", "Uttarakhand"],
+    "sowing_time": "December to January (in dormant season)",
+    "harvesting_time": "July to October",
+    "soil_type": "Well-drained loamy soil with pH 6.0–7.0",
+    "common_diseases": [
+      {
+        "disease_name": "Apple Scab",
+        "symptoms": "Olive-green spots on leaves and fruits",
+        "cause": "Fungal infection (Venturia inaequalis)",
+        "cure": "Spray Captan 2 g/litre water"
+      },
+      {
+        "disease_name": "Powdery Mildew",
+        "symptoms": "White fungal growth on young leaves and buds",
+        "cause": "Fungal infection (Podosphaera leucotricha)",
+        "cure": "Spray Sulphur 0.2% solution"
+      }
+    ]
+  },
+  {
+    "crop_name": "Papaya",
+    "scientific_name": "Carica papaya",
+    "category": "Fruit Crop",
+    "states_grown": ["Andhra Pradesh", "Karnataka", "Maharashtra", "Gujarat"],
+    "sowing_time": "February to April and June to September",
+    "harvesting_time": "6 to 9 months after planting",
+    "soil_type": "Light well-drained loamy soil",
+    "common_diseases": [
+      {
+        "disease_name": "Papaya Ring Spot Virus",
+        "symptoms": "Mosaic patterns on leaves and ring-like spots on fruits",
+        "cause": "Viral infection spread by aphids",
+        "cure": "Remove infected plants and control aphids using Imidacloprid"
+      },
+      {
+        "disease_name": "Powdery Mildew",
+        "symptoms": "White fungal growth on leaves and petioles",
+        "cause": "Fungal infection (Oidium caricae-papayae)",
+        "cure": "Spray wettable sulphur 0.3%"
+      }
+    ]
+  },
+  {
+    "crop_name": "Onion",
+    "scientific_name": "Allium cepa",
+    "category": "Rabi/Kharif",
+    "states_grown": ["Maharashtra", "Karnataka", "Gujarat", "Madhya Pradesh"],
+    "sowing_time": "October to November (Rabi), May to June (Kharif)",
+    "harvesting_time": "February to March (Rabi), October to November (Kharif)",
+    "soil_type": "Sandy loam to clay loam soil",
+    "common_diseases": [
+      {
+        "disease_name": "Purple Blotch",
+        "symptoms": "Small water-soaked lesions that turn purple and enlarge",
+        "cause": "Fungal infection (Alternaria porri)",
+        "cure": "Spray Mancozeb 2.5 g/litre water"
+      },
+      {
+        "disease_name": "Downy Mildew",
+        "symptoms": "Pale green patches with purple mold on leaves",
+        "cause": "Fungal infection (Peronospora destructor)",
+        "cure": "Spray Metalaxyl + Mancozeb @2 g/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Chili",
+    "scientific_name": "Capsicum annuum",
+    "category": "Kharif/Rabi",
+    "states_grown": ["Andhra Pradesh", "Telangana", "Karnataka", "Maharashtra"],
+    "sowing_time": "June to July (Kharif), October to November (Rabi)",
+    "harvesting_time": "September to February",
+    "soil_type": "Well-drained sandy loam soil",
+    "common_diseases": [
+      {
+        "disease_name": "Leaf Curl Virus",
+        "symptoms": "Upward curling and crinkling of leaves",
+        "cause": "Viral infection transmitted by whiteflies",
+        "cure": "Spray Imidacloprid 0.3 ml/litre water"
+      },
+      {
+        "disease_name": "Fruit Rot",
+        "symptoms": "Soft water-soaked lesions on fruits",
+        "cause": "Fungal infection (Colletotrichum capsici)",
+        "cure": "Spray Mancozeb 2.5 g/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Brinjal",
+    "scientific_name": "Solanum melongena",
+    "category": "Kharif/Rabi",
+    "states_grown": ["West Bengal", "Odisha", "Bihar", "Madhya Pradesh"],
+    "sowing_time": "June to July (Kharif), November to December (Rabi)",
+    "harvesting_time": "September to April",
+    "soil_type": "Sandy loam with high organic matter",
+    "common_diseases": [
+      {
+        "disease_name": "Bacterial Wilt",
+        "symptoms": "Sudden wilting of leaves and stem collapse",
+        "cause": "Bacterium (Ralstonia solanacearum)",
+        "cure": "Soil drenching with Streptocycline 200 ppm + Copper oxychloride"
+      },
+      {
+        "disease_name": "Phomopsis Blight",
+        "symptoms": "Gray-brown spots on leaves and fruit rot",
+        "cause": "Fungal infection (Phomopsis vexans)",
+        "cure": "Spray Carbendazim 0.1% at 10-day intervals"
+      }
+    ]
+  },
+  {
+    "crop_name": "Cabbage",
+    "scientific_name": "Brassica oleracea var. capitata",
+    "category": "Rabi",
+    "states_grown": ["Uttar Pradesh", "Bihar", "West Bengal", "Karnataka"],
+    "sowing_time": "September to November",
+    "harvesting_time": "January to March",
+    "soil_type": "Well-drained loamy soil with high fertility",
+    "common_diseases": [
+      {
+        "disease_name": "Black Rot",
+        "symptoms": "V-shaped yellow lesions on leaf margins",
+        "cause": "Bacterium (Xanthomonas campestris pv. campestris)",
+        "cure": "Spray Streptocycline 100 ppm solution"
+      },
+      {
+        "disease_name": "Downy Mildew",
+        "symptoms": "Yellow patches on upper leaf surface and white mold below",
+        "cause": "Fungal infection (Peronospora parasitica)",
+        "cure": "Spray Mancozeb 2 g/litre water"
+      }
+    ]
+  },
+  {
+    "crop_name": "Cauliflower",
+    "scientific_name": "Brassica oleracea var. botrytis",
+    "category": "Rabi",
+    "states_grown": ["Bihar", "West Bengal", "Uttar Pradesh", "Madhya Pradesh"],
+    "sowing_time": "August to October",
+    "harvesting_time": "December to February",
+    "soil_type": "Loamy soil rich in organic matter",
+    "common_diseases": [
+      {
+        "disease_name": "Black Rot",
+        "symptoms": "Yellowing of leaves with black veins",
+        "cause": "Bacterium (Xanthomonas campestris)",
+        "cure": "Spray Streptocycline 100 ppm solution"
+      }
+    ]
+  },
+  {
+    "crop_name": "Pea",
+    "scientific_name": "Pisum sativum",
+    "category": "Rabi",
+    "states_grown": ["Uttar Pradesh", "Bihar", "Punjab", "Madhya Pradesh"],
+    "sowing_time": "October to November",
+    "harvesting_time": "February to March",
+    "soil_type": "Well-drained loamy soil",
+    "common_diseases": [
+      {
+        "disease_name": "Powdery Mildew",
+        "symptoms": "White powdery growth on both surfaces of leaves",
+        "cause": "Fungal infection (Erysiphe pisi)",
+        "cure": "Spray Sulphur 0.2% or Carbendazim 0.1%"
+      }
+    ]
+  }
+]
