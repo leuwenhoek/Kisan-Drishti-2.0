@@ -8,7 +8,7 @@ import os
 from lib_info import Library
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-change-this'  # Required for sessions
+app.secret_key = 'secret-key'
 
 # Configure upload folder
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
